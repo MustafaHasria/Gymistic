@@ -15,15 +15,16 @@
         tools:listitem="@layout/item_recycler_trainer" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
         android:id="@+id/activity_main_floating_action_button"
-        android:layout_marginBottom="18dp"
-        android:src="@drawable/ic_add"
-        android:layout_marginEnd="18dp"
-        android:backgroundTint="@color/primary"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:backgroundTint="@color/primary"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
