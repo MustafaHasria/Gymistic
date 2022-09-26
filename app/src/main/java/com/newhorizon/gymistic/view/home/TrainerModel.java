@@ -10,11 +10,13 @@ public class TrainerModel {
     private String endDate;
     private boolean isMonthly;
     private int countCourse;
+    private String period;
     //endregion
 
     //region Constructor
 
-    public TrainerModel(String name, String type, boolean gender, String startDate, String endDate, boolean isMonthly, int countCourse) {
+
+    public TrainerModel(String name, String type, boolean gender, String startDate, String endDate, boolean isMonthly, int countCourse, String period) {
         this.name = name;
         this.type = type;
         this.gender = gender;
@@ -22,6 +24,7 @@ public class TrainerModel {
         this.endDate = endDate;
         this.isMonthly = isMonthly;
         this.countCourse = countCourse;
+        this.period = period;
     }
 
     public TrainerModel() {
@@ -86,6 +89,14 @@ public class TrainerModel {
 
     public void setCountCourse(int countCourse) {
         this.countCourse = countCourse;
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
     //endregion

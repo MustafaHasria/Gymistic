@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
+    android:animateLayoutChanges="true"
     tools:context=".view.home.addtrainer.AddTrainerActivity">
 
     <TextView
@@ -25,7 +26,7 @@
             android:id="@+id/activity_add_trainer_text_input_edit_text_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
             android:layout_marginTop="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,6 +38,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_add_trainer_text_input_edit_text_type_of_sport"
             android:layout_width="match_parent"
+            android:textColor="@color/primary"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -129,13 +131,15 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        android:id="@+id/activity_add_trainer_text_input_layout_count_of_courses"
         android:layout_height="wrap_content"
         android:hint="Count courses">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activity_add_trainer_text_input_edit_text_type_of_count_of_courses"
+            android:id="@+id/activity_add_trainer_text_input_edit_text_count_of_courses"
             android:layout_width="match_parent"
-
+            android:textColor="@color/primary"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
     </com.google.android.material.textfield.TextInputLayout>

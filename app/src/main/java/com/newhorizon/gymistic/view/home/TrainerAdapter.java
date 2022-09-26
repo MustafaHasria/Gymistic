@@ -16,7 +16,7 @@ import com.newhorizon.gymistic.R;
 
 import java.util.List;
 
-public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerViewHolder>{
+public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerViewHolder> {
 
     //region Adapter
 
@@ -48,14 +48,13 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerV
     @Override
     public void onBindViewHolder(@NonNull TrainerViewHolder holder, int position) {
         holder.itemRecyclerTrainerTextViewName.setText(trainerModelList.get(position).getName());
-        holder.itemRecyclerTrainerTextViewCharacter.setText(trainerModelList.get(position).getName().toUpperCase().substring(0,1));
+        holder.itemRecyclerTrainerTextViewCharacter.setText(trainerModelList.get(position).getName().toUpperCase().substring(0, 1));
         holder.itemRecyclerTrainerTextViewType.setText("type: " + trainerModelList.get(position).getType());
-        holder.itemRecyclerTrainerCardViewMainContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, ""+ trainerModelList.get(holder.getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (trainerModelList.get(position).isMonthly())
+            holder.itemRecyclerTrainerTextViewPeriod.setVisibility(View.GONE);
+        else
+            holder.itemRecyclerTrainerTextViewPeriod.setText(trainerModelList.get(position).getPeriod());
+        holder.itemRecyclerTrainerCardViewMainContainer.setOnClickListener(v -> Toast.makeText(context, "" + trainerModelList.get(holder.getAdapterPosition()).getName(), Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -63,16 +62,21 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerV
         return trainerModelList.size();
     }
 
+    public void updateList(List<TrainerModel> trainerModelList) {
+        this.trainerModelList = trainerModelList;
+        notifyDataSetChanged();
+    }
+
     //endregion
 
     //region Interface click listener
-    interface TrainerClickListeners{
+    interface TrainerClickListeners {
         void onItemRecyclerTrainerCardViewMainContainerClickListener(int position, TrainerModel trainerModel);
     }
     //endregion
 
     //region View holder
-    class TrainerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class TrainerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //region Components
         CardView itemRecyclerTrainerCardViewMainContainer;

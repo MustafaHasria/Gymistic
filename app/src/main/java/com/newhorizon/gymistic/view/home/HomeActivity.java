@@ -1,5 +1,7 @@
 package com.newhorizon.gymistic.view.home;
 
+import static com.newhorizon.gymistic.util.AppConst.TRAINER_DATA;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,8 @@ import com.newhorizon.gymistic.view.home.addtrainer.AddTrainerActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity implements TrainerAdapter.TrainerClickListeners {
 
     //region Variables
@@ -27,16 +31,12 @@ public class HomeActivity extends AppCompatActivity implements TrainerAdapter.Tr
     //endregion
 
 
+    //region Life cycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        trainerModelList = new ArrayList<>();
-        trainerModelList.add(new TrainerModel("Ahmad", "Gym", true, "1/1/2001", "1/2/2003", true, 16));
-        trainerModelList.add(new TrainerModel("Rama", "Balieh", true, "1/1/2001", "1/2/2003", true, 16));
-        trainerModelList.add(new TrainerModel("Mohammad", "Airobic", true, "1/1/2001", "1/2/2003", true, 16));
-        trainerModelList.add(new TrainerModel("Mustafa", "Basketball", true, "1/1/2001", "1/2/2003", true, 16));
-        trainerModelList.add(new TrainerModel("Nour", "Gym", true, "1/1/2001", "1/2/2003", true, 16));
+        List<TrainerModel> trainerModelList = Paper.book().read(TRAINER_DATA, new ArrayList<>());
         trainerAdapter = new TrainerAdapter(trainerModelList, this);
         activityMainRecyclerViewTrainers = findViewById(R.id.activity_main_recycler_view_trainers);
         activityMainFloatingActionButton = findViewById(R.id.activity_main_floating_action_button);
@@ -50,6 +50,14 @@ public class HomeActivity extends AppCompatActivity implements TrainerAdapter.Tr
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        trainerAdapter.updateList(Paper.book().read(TRAINER_DATA, new ArrayList<>()));
+    }
+
+    //endregion
 
 
     //region Adapter click listeners
